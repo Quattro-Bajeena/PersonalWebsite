@@ -1,0 +1,29 @@
+{% extends 'content_template.html' %}
+
+{%block head%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/nick.css')}}">
+{%endblock%}
+
+{%block title%}
+{{nickname.nickname}}
+{%endblock%}
+
+
+{% block header %} {{nickname.nickname}} {%endblock%}
+
+{%block history%}
+<p>Created: {{nickname.create_date_str}}</p>
+<p>{{nickname.history}}</p>
+{%endblock%}
+
+{% block list %}
+
+{% for account in accounts %}
+    
+    <a href= {{account.link}} target="_blank">
+        <img src={{url_for('static', filename=path+'/'+account.logo)}} title={{account.website}} alt={{account.website}} >
+    </a>
+{% endfor %}
+
+{%endblock%}
+

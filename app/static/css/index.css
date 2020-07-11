@@ -1,0 +1,103 @@
+
+div.content-container{
+    grid-area: c;
+    
+    background-color: #e94335;
+    justify-content: stretch;
+    align-items: stretch;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0px;
+    padding: 0px;
+    
+}
+
+
+.content-container > div{
+    justify-content: stretch;
+    align-items: stretch;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    gap: 5px;
+    padding: 10px;
+    
+}
+
+
+.content-container > div > .header{
+    font-size: 1.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container > div > .content{
+    display: grid;
+    gap: 5px;
+    padding: 10px;
+    
+    
+    
+}
+
+
+.content-container > div > .content > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff9e0;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+.personal{
+    background-color: #e25043;	
+}
+
+#personal-content{
+    grid-template:repeat(2, 1fr) / repeat(3, 1fr);
+    
+}
+
+
+#personal-content > a{
+    background-color: #b9271d;
+}
+
+#personal-content > a:hover{
+    cursor: hand;
+    background-color: #ad1d12;
+    color: #ffffff;
+    opacity: .9;
+    
+}
+
+.work{
+    background-color: #771010;
+}
+
+#work-content{
+    grid-template:repeat(2, 1fr) / repeat(2, 1fr);
+    font-size: 1.3em;
+    
+}
+
+#work-content > a{
+    background-color: #680707;
+}
+
+#work-content > a:hover{
+    cursor: hand;
+    background-color: #8b1111;
+    color: #ffffff;
+    opacity: .9;
+}
+
+
+/*Rest of the site*/
+
+
+
+
+

@@ -1,0 +1,38 @@
+div.content-container{
+    
+    background-color: #771010;
+   
+    
+}
+
+.content-container > .content-header{
+    border-color: #5c0f08;
+    background-color: #8a0e0e; 
+    
+}
+
+.content-history{
+    border-color: #5c0f08;
+
+}
+
+.content-container > .content-list{
+    background-color: #8d1d1d;
+    grid-template: repeat(2, 1fr)/repeat(2,1fr);
+    gap: 10px;
+    padding: 20px;
+
+}
+
+.content-list > a{
+    background-color: #680707;
+    
+    
+}
+
+.content-list > a:hover{
+    background-color: #9e1a1a;
+    color: #ffffff;
+    opacity: .9;
+    
+}

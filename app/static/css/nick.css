@@ -1,0 +1,52 @@
+div.content-container{
+    background-color: #e94335; 
+    
+}
+
+
+
+.content-container > .content-header{
+
+    border-color: #992015;
+    background-color: #c4291b;
+    
+    
+}
+
+.content-history{
+
+    border-color: #992015;
+    
+
+}
+
+.content-list{
+    background-color: #d33628;
+    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: space-around;
+    justify-content: center;
+    
+    
+    gap: 20px;
+
+}
+
+.content-list > a{
+    
+}
+
+.content-list > a > img{
+    width: 200px;
+    height: auto;
+    
+}
+
+@media(max-width: 1600px){
+    .content-list > a > img{
+        width: 150px;
+        height: auto;
+        
+    }
+}

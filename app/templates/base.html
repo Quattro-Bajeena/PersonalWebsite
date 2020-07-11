@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
+    {% block head%} {%endblock%}
+    {%block stylesheet%}{%endblock%}
+    <title>{%block title%}{%endblock%}</title>
+</head>
+
+<body><div class="main-container">
+    <div class="header">Header</div>
+    <div class="content-container">
+        {%block body%}{%endblock%} 
+    </div>
+    <div class="rssfeed">RSS feed</div>
+    <div class="footer">Footer</div>
+</div>
+       
+</body>
+</html>

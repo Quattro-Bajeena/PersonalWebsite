@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{%block head%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+<title>My Website</title>
+{%endblock%}
+
+{%block body%}
+<div class="personal">
+    <div class="header" id="personal-header">YO, I'M</div>
+    <div class="content" id="personal-content">
+        <a href="/nicknames/Paraon"><div>Paraon</div></a>
+        <a href="/nicknames/Adelinold"><div>Adelinold</div></a>
+        <a href="/nicknames/turtle_guy"><div>Turtle Guy</div></a>
+        <a href="/nicknames/Grenmag"><div>Grenmag</div></a>
+        <a href="/nicknames/Mateusz Oleszek"><div>Mateusz Oleszek</div></a>
+        <a href="/nicknames/tAki"><div>tAki</div></a>
+    </div>
+</div>
+<div class="work">
+    <div class="header" id="work-header">AND I'M DOING</div>
+    <div class="content" id="work-content">
+        <a href="/Art"><div>Art</div></a>
+        <a href="/Games"><div>Games</div></a>
+        <a href="/Programming"><div>Programing</div></a>
+        <a href="/Videos"><div>Videos</div></a>
+    </div>
+</div>
+{%endblock%}

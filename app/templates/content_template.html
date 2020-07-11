@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{%block stylesheet%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/content_template.css')}}">
+
+{%endblock%}
+
+{% block body %}
+<div class="content-header">{% block header %} {%endblock%}</div>
+<div class="content-history">{%block history%}{%endblock%}</div>
+<div class="content-list">{% block list %}{%endblock%}</div>
+{% endblock %}

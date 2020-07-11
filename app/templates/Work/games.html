@@ -1,0 +1,27 @@
+{% extends 'content_template.html' %}
+
+{%block head%}
+
+<link rel="stylesheet" href="{{url_for('static', filename='css/Work/games.css')}}">
+{%endblock%}
+
+{%block title%}
+Games
+{%endblock%}
+
+{% block header %}
+I am gAmE dEsIgNeR
+{%endblock%}
+
+{%block history%}
+
+*why do I do games yo*
+
+{%endblock%}
+
+{% block list %}
+<a href="/Games/student_maker">Student Maker</a>
+<a href="/Games/bahr">Boy And His Robot</a>
+<a href="/Games/mecha_game">Mecha Game</a>
+{%endblock%}
+
