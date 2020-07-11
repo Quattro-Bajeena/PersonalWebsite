@@ -2,6 +2,7 @@
 
 {%block head%}
 <link rel="stylesheet" href="{{url_for('static', filename='css/Work/art.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/Work/art_work.css')}}">
 {%endblock%}
 
 {%block title%}
@@ -22,6 +23,9 @@ My Shitty Drawings
 {%endblock%}
 
 {% block list %}
-my drawings
+{% for art in art_pieces %}
+    <div class={{art.size}}><img  src={{url_for('static', filename=path+'/'+art.src)}} title={{art.name}} alt={{art.name}} ></div>
+{% endfor %}
+
 {%endblock%}
 

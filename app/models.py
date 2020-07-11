@@ -25,8 +25,12 @@ class Account(db.Model):
 
 
 class Art(db.Model):
-    id = db.Column(db.Integer, primary_key=True, nullable=False)
-    category = db.Column(db.String(32), nullable=False)
+    name = db.Column(db.String(60), primary_key=True, nullable=False)
     src = db.Column(db.String(128))
+
+    category = db.Column(db.String(32))
     description = db.Column(db.String(1024))
-    orientation = db.Column(db.String(32))
+    size = db.Column(db.String(32))
+
+    def __repr__(self):
+        return f"Art Piece: {self.name}"

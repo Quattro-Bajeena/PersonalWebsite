@@ -26,12 +26,14 @@ div.content-container{
 
 .content-container > div > .header{
     font-size: 1.4em;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .content-container > div > .content{
+    
     display: grid;
     gap: 5px;
     padding: 10px;

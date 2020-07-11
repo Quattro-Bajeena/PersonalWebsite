@@ -1,5 +1,5 @@
 from app import app, db
-from app.models import Nickname, Account
+from app.models import Nickname, Account, Art
 from flask import render_template, url_for
 import pathlib
 
@@ -22,7 +22,17 @@ def art_page():
 
 @app.route('/Art/<category>')
 def art_category_page(category : str):
-    return render_template(f'Work/Work_piece/Art/{category}.html', category = category)
+    categories = [
+        {'page': 'drawings', 'category': 'drawing'},
+        {'page': 'stickers', 'category': 'sticker'},
+        {'page': '3D', 'category': '3D'},
+        {'page': 'animation', 'category': 'animation'}
+    ]
+    art_category = next(item for item in categories if item["page"] == category)['category']
+
+    art_pieces = Art.query.filter(Art.category==art_category)
+    path = pathlib.Path().parent.joinpath(f'Images/Art/{category}')
+    return render_template(f'Work/Work_piece/Art/{category}.html', path = path.as_posix(), category = category, art_pieces = art_pieces)
 
 
 @app.route('/Programming')
