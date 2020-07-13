@@ -60,6 +60,14 @@ Writing articles in MarkDown yeah, it's a pun on markup languages oooho
   
 ### Getting the data
 
+Python scripts that get (extract) my Activities from websites API's/RSS feeds and put them all in a database, from which those are used by a website feed.
+The entires in database formated like RSS, so it can be converted to that for all my activities.
+
+                                                -> RSS feed for my website
+        web API 1 -> script  -> ↓              ↑  
+        web API 2 - > script -> Database - - - - > Feed displayed on my site  
+        RSS feed 1 -> script -> ↑  
+
 Using RSS feeds (don't know if doable or free).
 Or accesing those webistes APIs by Python and getting the data I want, a nice challange.
 Definetly doable with Twitter and Youtube.
@@ -77,3 +85,5 @@ Definetly doable with Twitter and Youtube.
 
 1. How to make a python script run on web server every X hours.
 2. Good website design lol
+3. JavaScript for making images pop up when you clikc them
+4. Scrolling bar box to display that feed
