@@ -22,15 +22,11 @@ def art_page():
 
 @app.route('/Art/<category>')
 def art_category_page(category : str):
-    categories = [
-        {'page': 'drawings', 'category': 'drawing'},
-        {'page': 'stickers', 'category': 'sticker'},
-        {'page': '3D', 'category': '3D'},
-        {'page': 'animation', 'category': 'animation'}
-    ]
+    from updating_images_db import categories
+
     art_category = next(item for item in categories if item["page"] == category)['category']
 
-    art_pieces = Art.query.filter(Art.category==art_category)
+    art_pieces = Art.query.filter(Art.category==art_category).order_by(Art.name)
     path = pathlib.Path().parent.joinpath(f'Images/Art/{category}')
     return render_template(f'Work/Work_piece/Art/{category}.html', path = path.as_posix(), category = category, art_pieces = art_pieces)
 
