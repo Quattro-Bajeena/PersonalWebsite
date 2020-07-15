@@ -46,4 +46,13 @@ class Video(db.Model):
         return f"Video: {self.title}"
 
 class Activity(db.Model):
-    id = db.Column(db.Int, primary_key=True)
+    id = db.Column(db.String(200), primary_key=True, nullable=False)
+    title = db.Column(db.String(200))
+    link = db.Column(db.String(200))
+    description = db.Column(db.String(1000))
+    date = db.Column(db.DateTime)
+    enclosure = db.Column(db.String(200))
+
+    def __repr__(self):
+        return f"Activity: {self.title}"
+
