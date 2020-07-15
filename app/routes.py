@@ -22,7 +22,7 @@ def art_page():
 
 @app.route('/Art/<category>')
 def art_category_page(category : str):
-    from updating_images_db import categories
+    from update_img import categories
 
     art_category = next(item for item in categories if item["page"] == category)['category']
 

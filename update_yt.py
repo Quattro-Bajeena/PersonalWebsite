@@ -16,7 +16,7 @@ def update_yt_rss(feed_url : str):
             date = datetime.datetime(*(entry.published_parsed[0:6]))
             enclosure = entry.media_thumbnail[0]['url']
 
-            new_activity = Activity(id = id, title=title, link = link, description = description, date = date, enclosure = enclosure)
+            new_activity = Activity(id = id, title=title, link = link, description = description, date = date, enclosure = enclosure, website = 'YouTube')
             db.session.add(new_activity)
             print(f'added: {title}')
         else:

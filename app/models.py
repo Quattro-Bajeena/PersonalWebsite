@@ -47,6 +47,7 @@ class Video(db.Model):
 
 class Activity(db.Model):
     id = db.Column(db.String(200), primary_key=True, nullable=False)
+    website = db.Column(db.String(100))
     title = db.Column(db.String(200))
     link = db.Column(db.String(200))
     description = db.Column(db.String(1000))
