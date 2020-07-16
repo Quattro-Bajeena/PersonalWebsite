@@ -18,7 +18,7 @@ def update_tweets_rss(days_back : int):
     now = datetime.datetime.now()
     cutoff_date = now - datetime.timedelta(days=days_back)
 
-    for tweet in tweepy.Cursor(api.user_timeline, id = turtle_guy.id, tweet_mode='extended').items(1000):
+    for tweet in tweepy.Cursor(api.user_timeline, id = turtle_guy.id, tweet_mode='extended').items():
 
         #!!! its gonna itarate through like 6000 tweets if it doesnt break
         if tweet.created_at < cutoff_date:
@@ -42,13 +42,13 @@ def update_tweets_rss(days_back : int):
             db.session.add(new_activity)
             print(f'tweet added - {title}')
         else:
-            print('not added')
+            print('reply/in db')
 
     db.session.commit()
         
         
 if __name__ == '__main__':
-    update_tweets_rss(14)
+    update_tweets_rss(30)
 
         
 
