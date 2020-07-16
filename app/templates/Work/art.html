@@ -1,6 +1,9 @@
 {% extends 'content_template.html' %}
 
+
+
 {%block head%}
+{{ super() }}
 <link rel="stylesheet" href="{{url_for('static', filename='css/Work/art.css')}}">
 {%endblock%}
 
@@ -9,7 +12,12 @@ My Art
 {%endblock%}
 
 
-{% block header %}My "Art"{%endblock%}
+{% block header %}
+
+My "Art"
+
+{%endblock%}
+
 {%block history%}
 *why I do art* Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam veritatis aliquam nesciunt harum perferendis minima nulla fuga at voluptates quia! At quaerat hic minus corrupti officiis excepturi pariatur, perspiciatis dolorem?
 

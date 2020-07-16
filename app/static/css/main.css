@@ -104,8 +104,88 @@ body {
     background-color: #5cda82;
 }
 
-.rssfeed{
+.main-container > .rssfeed{
     grid-area: s;
+    font-size: 0.5em;
     min-width: 250px;
+    max-height: 1000px;
+
+    padding: 10px;
     background-color: #4284f3;
+
+    overflow: auto;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+@media(max-width: 1400px){
+    .main-container > .rssfeed{
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    
+
+}
+
+.rssfeed > .activity{
+    border-style: solid;
+    border-width: 5px;
+    border-radius: 10px;
+
+    padding: 15px;
+    display: grid;
+    grid-template-areas: 
+    "title website"
+    "date link"
+    "description description"
+    "picture picture";
+    grid-template-columns: 1fr;
+    
+}
+
+
+.activity > .title{
+    grid-area: title;
+    font-weight: bold;
+}
+
+.activity > .website{
+    grid-area: website;
+    font-size: 0.9em;
+    font-weight: lighter;
+}
+
+.activity > .date{
+    grid-area: date;
+    font-size: 0.8em;
+    font-weight: lighter;
+}
+
+.activity > .description{
+    grid-area: description;
+    
+}
+.activity > .link{
+    grid-area: link;
+    font-size: 0.7em;
+    font-weight: lighter;
+    
+}
+
+.activity > .picture{
+    grid-area: picture;
+    
+    
+}
+
+.picture > img{
+    width: 50%;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
 }

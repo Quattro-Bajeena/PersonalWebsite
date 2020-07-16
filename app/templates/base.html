@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
     {% block head%} {%endblock%}
-    {%block stylesheet%}{%endblock%}
+    
     <title>{%block title%}{%endblock%}</title>
 </head>
 
@@ -15,7 +15,32 @@
     <div class="content-container">
         {%block body%}{%endblock%} 
     </div>
-    <div class="rssfeed">RSS feed</div>
+
+    <div class="rssfeed">
+
+        {% for activity in activities[:20] %}
+        <div class="activity">
+            <div class="title">{{activity.title}}</div>
+            <div class="website">{{activity.website}}</div>
+            <div class="date">{{activity.date.date()}}</div>
+            <div class="description">
+                {%if activity.description %}
+                    {{activity.description}}
+                {% endif %}
+            </div>
+            <div class="link">
+                <a href={{activity.link}} target="remote">Link</a>
+            </div>
+            <div class="picture">
+                {%if activity.enclosure %}
+                <img src={{activity.enclosure}}>  
+                {% endif %}
+            </div>
+        </div>
+        {%endfor%}
+
+    </div>
+
     <div class="footer">Footer</div>
 </div>
        

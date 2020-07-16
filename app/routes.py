@@ -1,7 +1,12 @@
 from app import app, db
-from app.models import Nickname, Account, Art
+from app.models import Nickname, Account, Art, Activity
 from flask import render_template, url_for
 import pathlib
+
+@app.context_processor
+def feed_activities():
+    activities = Activity.query.order_by(Activity.date.desc())
+    return dict(activities = activities)
 
 @app.route('/')
 def index():

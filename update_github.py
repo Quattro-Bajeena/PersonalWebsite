@@ -29,10 +29,9 @@ def update_github_rss(username : str):
                 id = commit.id
                 title = f'{repo_name} - {commit.title}'
                 link = commit.link
-                description = f'Commit to {repo_name} repository. Comment: "{commit.title}"'
                 date = datetime.datetime(*(commit.updated_parsed[0:6]))
                 
-                new_activity = Activity(id = id, title=title, link = link, description = description, date = date, website = 'GitHub')
+                new_activity = Activity(id = id, title=title, link = link, date = date, website = 'GitHub')
                 db.session.add(new_activity)
                 print(f'added: {title}')
             else:
