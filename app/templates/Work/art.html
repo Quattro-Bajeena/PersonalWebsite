@@ -24,9 +24,9 @@ My "Art"
 {%endblock%}
 
 {% block list %}
-<a href="/Art/drawings">Drawings</a>
-<a href="/Art/stickers">Stickers</a>
-<a href="/Art/3D">3D</a>
-<a href="/Art/animation">Animation</a>
+<a href={{url_for('art_category_page', category='drawings')}}>Drawings</a>
+<a href={{url_for('art_category_page', category='stickers')}}>Stickers</a>
+<a href={{url_for('art_category_page', category='3D')}}>3D</a>
+<a href={{url_for('art_category_page', category='animation')}}>Animation</a>
 {%endblock%}
 

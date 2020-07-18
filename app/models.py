@@ -20,6 +20,8 @@ class Account(db.Model):
     profile_pic = db.Column(db.String(120))
     logo = db.Column(db.String(120))
 
+    activities = db.relationship('Activity', backref = 'account', lazy='dynamic')
+
     def __repr__(self):
         return f"Site: {self.website}; Nickname: {self.nickname}."
 
@@ -47,7 +49,7 @@ class Video(db.Model):
 
 class Activity(db.Model):
     id = db.Column(db.String(200), primary_key=True, nullable=False)
-    website = db.Column(db.String(100))
+    website = db.Column(db.String(100), ForeignKey('account.website'))
     title = db.Column(db.String(200))
     link = db.Column(db.String(200))
     description = db.Column(db.String(1000))

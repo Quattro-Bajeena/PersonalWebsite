@@ -1,1 +1,3 @@
-FLASK_APP=my_website.py
+FLASK_APP=run.py
+FLASK_ENV=development
+FLASK_DEBUG=1

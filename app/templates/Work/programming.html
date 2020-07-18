@@ -21,8 +21,8 @@ My Mad Hacking Skillz
 
 {% block list %}
 <a href="https://github.com/Quattro-Bajeena">My Github</a>
-<a href="/Programming/ytd">Youtube Downloader</a>
-<a href="/Programming/waifu_vr">Waifu VR App</a>
-<a href="/Programming/ai_app">A.I. Machine Learning Yo</a>
+<a href={{url_for('programming_projects_page', project='ytd')}}>Youtube Downloader</a>
+<a href={{url_for('programming_projects_page', project='waifu_vr')}}>Waifu VR App</a>
+<a href={{url_for('programming_projects_page', project='ai_app')}}>A.I. Machine Learning Yo</a>
 {%endblock%}
 

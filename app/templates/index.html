@@ -9,21 +9,21 @@
 <div class="personal">
     <div class="header" id="personal-header">YO, I'M</div>
     <div class="content" id="personal-content">
-        <a href="/nicknames/Paraon"><div>Paraon</div></a>
-        <a href="/nicknames/Adelinold"><div>Adelinold</div></a>
-        <a href="/nicknames/turtle_guy"><div>Turtle Guy</div></a>
-        <a href="/nicknames/Grenmag"><div>Grenmag</div></a>
-        <a href="/nicknames/Mateusz Oleszek"><div>Mateusz Oleszek</div></a>
-        <a href="/nicknames/tAki"><div>tAki</div></a>
+        <a href={{url_for('nick_page', nick='Paraon')}}><div>Paraon</div></a>
+        <a href={{url_for('nick_page', nick='Adelinold')}}><div>Adelinold</div></a>
+        <a href={{url_for('nick_page', nick='turtle_guy')}}><div>Turtle Guy</div></a>
+        <a href={{url_for('nick_page', nick='Grenmag')}}><div>Grenmag</div></a>
+        <a href={{url_for('nick_page', nick='Mateusz Oleszek')}}><div>Mateusz Oleszek</div></a>
+        <a href={{url_for('nick_page', nick='tAki')}}><div>tAki</div></a>
     </div>
 </div>
 <div class="work">
     <div class="header" id="work-header">AND I'M DOING</div>
     <div class="content" id="work-content">
-        <a href="/Art"><div>Art</div></a>
-        <a href="/Games"><div>Games</div></a>
-        <a href="/Programming"><div>Programing</div></a>
-        <a href="/Videos"><div>Videos</div></a>
+        <a href={{url_for('art_page')}}><div>Art</div></a>
+        <a href={{url_for('games_page')}}><div>Games</div></a>
+        <a href={{url_for('programming_page')}}><div>Programing</div></a>
+        <a href={{url_for('videos_page')}}><div>Videos</div></a>
     </div>
 </div>
 {%endblock%}

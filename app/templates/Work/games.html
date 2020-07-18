@@ -20,8 +20,8 @@ I am gAmE dEsIgNeR
 {%endblock%}
 
 {% block list %}
-<a href="/Games/student_maker">Student Maker</a>
-<a href="/Games/bahr">Boy And His Robot</a>
-<a href="/Games/mecha_game">Mecha Game</a>
+<a href={{url_for('games_game', game='student_maker')}}>Student Maker</a>
+<a href={{url_for('games_game', game='bahr')}}>Boy And His Robot</a>
+<a href={{url_for('games_game', game='mecha_game')}}>Mecha Game</a>
 {%endblock%}
 

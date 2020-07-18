@@ -6,7 +6,8 @@ import pathlib
 @app.context_processor
 def feed_activities():
     activities = Activity.query.order_by(Activity.date.desc())
-    return dict(activities = activities)
+    icon_path = pathlib.Path().parent.joinpath('Images/Icons/')
+    return dict(activities = activities, icon_path = icon_path.as_posix())
 
 @app.route('/')
 def index():
@@ -27,7 +28,7 @@ def art_page():
 
 @app.route('/Art/<category>')
 def art_category_page(category : str):
-    from update_img import categories
+    from app.update_img import categories
 
     art_category = next(item for item in categories if item["page"] == category)['category']
 

@@ -17,27 +17,30 @@
     </div>
 
     <div class="rssfeed">
-
-        {% for activity in activities[:20] %}
-        <div class="activity">
-            <div class="title">{{activity.title}}</div>
-            <div class="website">{{activity.website}}</div>
-            <div class="date">{{activity.date.date()}}</div>
-            <div class="description">
-                {%if activity.description %}
-                    {{activity.description}}
-                {% endif %}
+        <div class="header">My Activities</div>
+        <div class="activities">
+            {% for activity in activities[:20] %}
+            <div class="activity">
+                <div class="title">{{activity.title}}</div>
+                <div class="website">
+                    <a href={{activity.link}} target="remote">
+                        <img src={{url_for('static', filename=icon_path+'/'+activity.account.logo)}} title={{activity.website}} alt={{activity.website}} >
+                    </a>
+                </div>
+                <div class="date">{{activity.date.date()}}</div>
+                <div class="description">
+                    {%if activity.description %}
+                        {{activity.description}}
+                    {% endif %}
+                </div>
+                <div class="picture">
+                    {%if activity.enclosure %}
+                    <img src={{activity.enclosure}}>  
+                    {% endif %}
+                </div>
             </div>
-            <div class="link">
-                <a href={{activity.link}} target="remote">Link</a>
-            </div>
-            <div class="picture">
-                {%if activity.enclosure %}
-                <img src={{activity.enclosure}}>  
-                {% endif %}
-            </div>
+            {%endfor%}
         </div>
-        {%endfor%}
 
     </div>
 
