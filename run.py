@@ -1,5 +1,4 @@
 
-
 #only thing needed to start the app
 from app import app
 

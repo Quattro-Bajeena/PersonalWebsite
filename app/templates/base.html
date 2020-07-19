@@ -18,6 +18,9 @@
 
     <div class="rssfeed">
         <div class="header">My Activities</div>
+        <div class="update">
+            <a href={{url_for('update_activities')}}>Update</a>
+        </div>
         <div class="activities">
             {% for activity in activities[:20] %}
             <div class="activity">

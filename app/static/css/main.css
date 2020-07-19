@@ -110,7 +110,7 @@ body {
     
     background-color: #4284f3;
     display: grid;
-    grid-template: 80px auto / 1fr;
+    grid-template: 80px 50px auto / 1fr;
     
 }
 

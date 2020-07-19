@@ -1,11 +1,11 @@
 import feedparser
 import datetime
-from app import db
-from app.models import Activity
+from flask_sqlalchemy import SQLAlchemy
 
 feed_url = 'https://www.youtube.com/feeds/videos.xml?channel_id=UCINPzzjxRzGOq4Pex5r3EKg'
 
-def update_yt_rss(feed_url : str):
+def update_yt_rss(feed_url : str, Activity, db : SQLAlchemy):
+    any_added = False
     feed = feedparser.parse(feed_url)
     for entry in feed.entries:
         if not Activity.query.get(entry.id):
@@ -18,10 +18,12 @@ def update_yt_rss(feed_url : str):
 
             new_activity = Activity(id = id, title=title, link = link, description = description, date = date, enclosure = enclosure, website = 'YouTube')
             db.session.add(new_activity)
+            any_added = True
             print(f'added: {title}')
-        else:
-            print(f"already in db: {entry.title}")
-
+    
+    if not any_added:
+        print('no new videos')
+        
     db.session.commit()
 
 

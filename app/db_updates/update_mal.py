@@ -3,10 +3,11 @@ import datetime
 from jikanpy import Jikan
 import json
 
-from app import db
-from app.models import Activity
 
-def update_mal_rss(user : str):
+from flask_sqlalchemy import SQLAlchemy
+
+def update_mal_rss(user : str, Activity, db : SQLAlchemy):
+    any_added = False
     jikan = Jikan()
     sleep(0.5)
     history = jikan.user(username=user, request = 'history')
@@ -35,8 +36,12 @@ def update_mal_rss(user : str):
 
             new_activity = Activity(id = id, title=title, link = link, date = date, website = 'My Anime List')
             db.session.add(new_activity)
+            any_added = True
             print(f'entry added - {title}')
 
+
+    if not any_added:
+        print('no new MAL entires')
     db.session.commit()
 
 if __name__ =='__main__':

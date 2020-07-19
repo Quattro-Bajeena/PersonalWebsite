@@ -7,7 +7,10 @@ import datetime
 from app import db
 from app.models import Activity
 
-def update_github_rss(username : str):
+from flask_sqlalchemy import SQLAlchemy
+
+def update_github_rss(username : str, Activity, db : SQLAlchemy):
+    any_added = False
     repos_url = f'https://api.github.com/users/{username}/repos'
     repo_names = []
 
@@ -33,10 +36,12 @@ def update_github_rss(username : str):
                 
                 new_activity = Activity(id = id, title=title, link = link, date = date, website = 'GitHub')
                 db.session.add(new_activity)
+                any_added = True
                 print(f'added: {title}')
-            else:
-                print(f"already in db: {commit.title}")
-
+            
+    if not any_added:
+        print('no new commits')
+        
     db.session.commit()
 
 if __name__=='__main__':

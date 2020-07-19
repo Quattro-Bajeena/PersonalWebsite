@@ -6,7 +6,7 @@ from app import db
 from app.models import Art
 from config import basedir
 
-
+from flask_sqlalchemy import SQLAlchemy
 
 art_folder = Path("app/static/Images/Art/")
 
@@ -23,7 +23,7 @@ categories = [
     ]
     
 
-def add_files(art_folder : Path, folders : list):
+def add_files(art_folder : Path, folders : list, Art, db : SQLAlchemy):
     any_added = False
     for folder in folders:
         art_pieces = folder['folder_path'].glob('*')
@@ -59,7 +59,7 @@ def add_files(art_folder : Path, folders : list):
 
     db.session.commit()
     
-def remove_files(art_folder : Path):
+def remove_files(art_folder : Path, Art, db : SQLAlchemy):
     art_works = [art_work.name for art_work in art_folder.rglob('*') if not art_work.is_dir()]
     art_works_db = Art.query.all()
     any_deleted = False

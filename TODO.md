@@ -1,0 +1,5 @@
+- Videos page with thumbanils to click on
+- individual videos page with history and stuff, embedded yt video
+- sidebar with usefull appliactions
+  - my own youtube downloader
+- 

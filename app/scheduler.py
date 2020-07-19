@@ -1,28 +1,62 @@
 import atexit
+import os
+import threading
+import concurrent.futures
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from app.update_github import update_github_rss
-from app.update_mal import update_mal_rss
-from app.update_twitter import update_tweets_rss
-from app.update_yt import update_yt_rss, feed_url
-from app.update_img import add_files, remove_files, art_folder, categories
+from . import app, db
+from .models import Activity, Art
+from .db_updates import *
+
+
+
 
 def say_hello():
     print("Hello World")
 
-scheduler = BackgroundScheduler()
-scheduler.add_job(func=update_github_rss, args=['Quattro-Bajeena'], trigger='interval', hours=24)
-scheduler.add_job(func=update_mal_rss, args=['Paraon'], trigger='interval', hours=24)
-scheduler.add_job(func=update_tweets_rss, args=[30], trigger='interval', hours=24)
-scheduler.add_job(func=update_yt_rss, args=[feed_url], trigger='interval',hours=24)
-scheduler.add_job(func=add_files, args=[art_folder, categories], trigger='interval', seconds=10)
-scheduler.add_job(func=remove_files, args=[art_folder], trigger='interval', seconds=20)
-
-#scheduler.add_job(func=say_hello, trigger='interval', seconds=3)
 
 
-atexit.register(lambda: scheduler.shutdown())
-scheduler.start()
+def update_all(message : str):
+    print('update started')
+    try:
+        update_github_rss('Quattro-Bajeena', Activity, db)
+        update_mal_rss('Paraon', Activity, db)
+        update_tweets_rss(30, Activity, db)
+        update_yt_rss(feed_url, Activity, db)
+        add_files(art_folder, categories, Art, db)
+        remove_files(art_folder, Art, db)
+        print('update finished')
+        return True
+    except:
+        print('couldnt update')
+        return False
+    
+
+
+def update_all_thread():
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        f1 = executor.submit(update_all, 'yo mama')
+        app.logger.info(f'update status: {f1.result()}')
+        
+
+@app.before_first_request
+def schedule_start():
+    print('schedule start')
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(func=update_github_rss, args=['Quattro-Bajeena', Activity, db], trigger='interval', hours=12)
+    scheduler.add_job(func=update_mal_rss, args=['Paraon', Activity, db], trigger='interval', hours=12)
+    scheduler.add_job(func=update_tweets_rss, args=[30, Activity, db], trigger='interval', hours=12)
+    scheduler.add_job(func=update_yt_rss, args=[feed_url, Activity, db], trigger='interval',hours=12)
+    scheduler.add_job(func=add_files, args=[art_folder, categories, Art, db], trigger='interval', hours=24)
+    scheduler.add_job(func=remove_files, args=[art_folder, Art, db], trigger='interval', hours=24)
+
+    #scheduler.add_job(func=say_hello, trigger='interval', seconds=3)
+
+    atexit.register(lambda: scheduler.shutdown())
+    scheduler.start()
+
+
+#print('consumer key: ',os.environ.get('YO'))
 
 

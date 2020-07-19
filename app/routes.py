@@ -1,6 +1,7 @@
-from app import app, db
-from app.models import Nickname, Account, Art, Activity
-from flask import render_template, url_for
+from . import app, db
+from .models import Nickname, Account, Art, Activity
+from .scheduler import update_all_thread
+from flask import render_template, url_for, redirect
 import pathlib
 
 @app.context_processor
@@ -9,9 +10,20 @@ def feed_activities():
     icon_path = pathlib.Path().parent.joinpath('Images/Icons/')
     return dict(activities = activities, icon_path = icon_path.as_posix())
 
+
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/update-activities')
+def update_activities():
+    update_all_thread()
+    return redirect('/')
+
+
 
 @app.route('/nicknames/<nick>')
 def nick_page(nick : str):
@@ -28,7 +40,7 @@ def art_page():
 
 @app.route('/Art/<category>')
 def art_category_page(category : str):
-    from app.update_img import categories
+    from .db_updates import categories
 
     art_category = next(item for item in categories if item["page"] == category)['category']
 
@@ -36,7 +48,7 @@ def art_category_page(category : str):
     path = pathlib.Path().parent.joinpath(f'Images/Art/{category}')
     return render_template(f'Work/Work_piece/Art/{category}.html', path = path.as_posix(), category = category, art_pieces = art_pieces)
 
-
+#
 @app.route('/Programming')
 def programming_page():
     return render_template('Work/programming.html')
@@ -45,6 +57,7 @@ def programming_page():
 def programming_projects_page(project : str):
     return render_template(f'Work/Work_piece/Programming/{project}.html', project = project)
 
+#
 @app.route('/Games')
 def games_page():
     return render_template('Work/games.html')
@@ -53,6 +66,7 @@ def games_page():
 def games_game(game : str):
     return render_template(f'Work/Work_piece/Games/{game}.html', game = game)
 
+#
 @app.route('/Videos')
 def videos_page():
     return render_template('Work/videos.html')
