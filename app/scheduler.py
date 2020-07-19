@@ -6,7 +6,7 @@ import concurrent.futures
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from . import app, db
-from .models import Activity, Art
+from .models import Activity, Art, Video
 from .db_updates import *
 
 
@@ -48,8 +48,10 @@ def schedule_start():
     scheduler.add_job(func=update_mal_rss, args=['Paraon', Activity, db], trigger='interval', hours=12)
     scheduler.add_job(func=update_tweets_rss, args=[30, Activity, db], trigger='interval', hours=12)
     scheduler.add_job(func=update_yt_rss, args=[feed_url, Activity, db], trigger='interval',hours=12)
+    scheduler.add_job(func=update_videos_db, args=[Video, db], trigger='interval', hours=24)
     scheduler.add_job(func=add_files, args=[art_folder, categories, Art, db], trigger='interval', hours=24)
     scheduler.add_job(func=remove_files, args=[art_folder, Art, db], trigger='interval', hours=24)
+    
 
     #scheduler.add_job(func=say_hello, trigger='interval', seconds=3)
 

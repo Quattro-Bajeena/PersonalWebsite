@@ -1,9 +1,11 @@
 import tweepy
 import datetime
 import os
+from dotenv import load_dotenv
 #from config import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_KEY, ACCESS_SECRET
 
 from flask_sqlalchemy import SQLAlchemy
+load_dotenv('.env')
 
 auth = tweepy.OAuthHandler(os.environ.get('CONSUMER_KEY'), os.environ.get('CONSUMER_SECRET'))
 auth.set_access_token(os.environ.get('ACCES_KEY'), os.environ.get('ACCES_SECRET'))
