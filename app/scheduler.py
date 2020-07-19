@@ -17,15 +17,16 @@ def say_hello():
 
 
 
-def update_all(message : str):
+def update_all():
     print('update started')
     try:
         update_github_rss('Quattro-Bajeena', Activity, db)
-        update_mal_rss('Paraon', Activity, db)
-        update_tweets_rss(30, Activity, db)
-        update_yt_rss(feed_url, Activity, db)
-        add_files(art_folder, categories, Art, db)
-        remove_files(art_folder, Art, db)
+        # update_mal_rss('Paraon', Activity, db)
+        # update_tweets_rss(30, Activity, db)
+        # update_yt_rss(feed_url, Activity, db)
+        # update_videos_db(Video, db)
+        # add_files(art_folder, categories, Art, db)
+        # remove_files(art_folder, Art, db)
         print('update finished')
         return True
     except:
@@ -36,8 +37,9 @@ def update_all(message : str):
 
 def update_all_thread():
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        f1 = executor.submit(update_all, 'yo mama')
+        f1 = executor.submit(update_all)
         app.logger.info(f'update status: {f1.result()}')
+        return f1.result()
         
 
 @app.before_first_request

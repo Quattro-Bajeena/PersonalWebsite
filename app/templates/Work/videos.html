@@ -20,7 +20,10 @@ My feats as European Savant-Guard filmmaker
 {%endblock%}
 
 {% block list %}
-<a href="https://www.youtube.com/user/Adelinold">My Youtube</a>
-*list of my videos*
+    {% for video in videos %}
+        <a href={{url_for('video_page', video=video.title)}}>
+            <img src={{video.thumbnail}} title={{video.title}} alt={{video.title}}>
+        </a>
+    {% endfor %}
 {%endblock%}
 

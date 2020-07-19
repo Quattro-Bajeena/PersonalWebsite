@@ -1,0 +1,40 @@
+{% extends 'content_template.html' %}
+
+{%block head%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static', filename='css/Work/video.css')}}">
+{%endblock%}
+
+{%block title%}
+
+{{video.title}}
+
+{%endblock%}
+
+
+{% block header %}
+
+{{video.title}}
+
+{%endblock%}
+
+{%block history%}
+
+<div class="video-embed">
+    <iframe src="https://www.youtube.com/embed/{{video.id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="date">Video uploaded: {{video.date.date()}}</div>
+<div class="history">
+    <p>*history of this video* Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia vel consectetur iusto soluta accusamus earum quaerat itaque deleniti iste exercitationem omnis consequatur quisquam reiciendis quo, quam dolore magni voluptatum harum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam quam asperiores illo odit, reprehenderit temporibus eligendi alias porro facere a quia nihil itaque enim voluptates maxime repellendus praesentium consequatur ipsa.</p>
+
+    </div>
+
+
+
+{%endblock%}
+
+{% block list %}
+*nothing I guess*
+*maybe the screenshots from prdouction, source files*
+{%endblock%}
+

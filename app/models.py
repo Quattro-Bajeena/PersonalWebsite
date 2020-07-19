@@ -38,11 +38,13 @@ class Art(db.Model):
         return f"Art Piece: {self.name}"
 
 class Video(db.Model):
-    title = db.Column(db.String(120), primary_key=True, nullable=False)
+    title = db.Column(db.String(300), primary_key=True, nullable=False)
+    id = db.Column(db.String(300))
     link = db.Column(db.String(200), nullable=False)
     thumbnail = db.Column(db.String(60))
     description = db.Column(db.String(500))
     date = db.Column(db.DateTime)
+    history = db.Column(db.String(2000))
 
     def __repr__(self):
         return f"Video: {self.title}"

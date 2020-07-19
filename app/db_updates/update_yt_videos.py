@@ -18,12 +18,13 @@ def update_videos_db(Video, db : SQLAlchemy):
     for video in my_videos:
         if not Video.query.get(video['video_title']):
             title = video['video_title']
+            id = video['video_id']
             link = f"https://www.youtube.com/watch?v={video['video_id']}"
             thumbanil = video['video_thumbnail']
             description = video['video_description']
             date = datetime.fromtimestamp(video['video_publish_date']) 
             
-            new_video = Video(title=title, link=link, thumbnail=thumbanil, description=description, date = date)
+            new_video = Video(id= id,title=title, link=link, thumbnail=thumbanil, description=description, date = date)
             db.session.add(new_video)
             any_new = True
             print(f'video added: {title}')

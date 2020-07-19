@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
     {% block head%} {%endblock%}
@@ -19,7 +20,7 @@
     <div class="rssfeed">
         <div class="header">My Activities</div>
         <div class="update">
-            <a href={{url_for('update_activities')}}>Update</a>
+            <button id='update' onclick="ajax_update()">Update</button>
         </div>
         <div class="activities">
             {% for activity in activities[:20] %}
@@ -49,6 +50,17 @@
 
     <div class="footer">Footer</div>
 </div>
-       
+
+
+<script type="text/javascript" src="{{url_for('static', filename='js/update_db.js')}}"></script>
+
+<script type=text/javascript>
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+{%block scripts %}{%endblock%}
+
 </body>
+
+
+
 </html>

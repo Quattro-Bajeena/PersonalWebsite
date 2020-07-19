@@ -1,7 +1,7 @@
 from . import app, db
-from .models import Nickname, Account, Art, Activity
+from .models import Nickname, Account, Art, Activity, Video
 from .scheduler import update_all_thread
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, request
 import pathlib
 
 @app.context_processor
@@ -20,8 +20,11 @@ def index():
 
 @app.route('/update-activities')
 def update_activities():
-    update_all_thread()
-    return redirect('/')
+    result = update_all_thread()
+    if result:
+        return 'successs', 200
+    else:
+        return 'failure', 200
 
 
 
@@ -69,4 +72,10 @@ def games_game(game : str):
 #
 @app.route('/Videos')
 def videos_page():
-    return render_template('Work/videos.html')
+    videos = Video.query.order_by(Video.date.desc())
+    return render_template('Work/videos.html', videos=videos)
+
+@app.route('/Videos/<video>')
+def video_page(video : str):
+    video = Video.query.get_or_404(video)
+    return render_template('/Work/Work_piece/video.html', video=video)
