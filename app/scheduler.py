@@ -17,7 +17,7 @@ def say_hello():
 
 
 
-def update_all():
+def update_all() -> dict:
     print('update started')
     try:
         update_github_rss('Quattro-Bajeena', Activity, db)
@@ -28,18 +28,18 @@ def update_all():
         # add_files(art_folder, categories, Art, db)
         # remove_files(art_folder, Art, db)
         print('update finished')
-        return True
+        return {'completed': True, 'message' : 'updated activities'}
     except:
         print('couldnt update')
-        return False
+        return {'completed': False, 'message' : 'couldnt update activities'}
     
 
 
-def update_all_thread():
+def update_all_thread() -> dict:
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        f1 = executor.submit(update_all)
-        app.logger.info(f'update status: {f1.result()}')
-        return f1.result()
+        f = executor.submit(update_all)
+        # app.logger.info(f'update status: {f1.result()}')
+        return f.result()
         
 
 @app.before_first_request

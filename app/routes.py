@@ -1,13 +1,13 @@
 from . import app, db
 from .models import Nickname, Account, Art, Activity, Video
 from .scheduler import update_all_thread
-from flask import render_template, url_for, redirect, request
-import pathlib
-
+from flask import render_template, url_for, redirect, request, send_from_directory
+from pathlib import Path
+import os
 @app.context_processor
 def feed_activities():
     activities = Activity.query.order_by(Activity.date.desc())
-    icon_path = pathlib.Path().parent.joinpath('Images/Icons/')
+    icon_path = Path().parent.joinpath('Images/Icons/')
     return dict(activities = activities, icon_path = icon_path.as_posix())
 
 
@@ -21,10 +21,7 @@ def index():
 @app.route('/update-activities')
 def update_activities():
     result = update_all_thread()
-    if result:
-        return 'successs', 200
-    else:
-        return 'failure', 200
+    return result
 
 
 
@@ -32,7 +29,7 @@ def update_activities():
 def nick_page(nick : str):
     nickname = Nickname.query.get_or_404(nick)
     accounts = nickname.accounts.all()
-    path = pathlib.Path().parent.joinpath('Images/Icons/')
+    path = Path().parent.joinpath('Images/Icons/')
     return render_template('nick.html', nickname = nickname, accounts = accounts, path = path.as_posix())
 
 # Work Pages
@@ -46,9 +43,11 @@ def art_category_page(category : str):
     from .db_updates import categories
 
     art_category = next(item for item in categories if item["page"] == category)['category']
+    path = next(item for item in categories if item["page"] == category)['folder_path']
 
     art_pieces = Art.query.filter(Art.category==art_category).order_by(Art.name)
-    path = pathlib.Path().parent.joinpath(f'Images/Art/{category}')
+    # path = Path().parent.joinpath(f'Images/Art/{category}')
+    print(path)
     return render_template(f'Work/Work_piece/Art/{category}.html', path = path.as_posix(), category = category, art_pieces = art_pieces)
 
 #
@@ -79,3 +78,17 @@ def videos_page():
 def video_page(video : str):
     video = Video.query.get_or_404(video)
     return render_template('/Work/Work_piece/video.html', video=video)
+
+@app.route('/Images/<name>')
+def image_display(name : str):
+    image = Art.query.get_or_404(name)
+    category = image.category
+    from .db_updates import categories
+    path = next(item for item in categories if item["category"] == category)['folder_path']
+    return send_from_directory(Path('static').joinpath(path), image.src)
+
+@app.route('/text_files/<name>')
+def articles_raw(name : str):
+    path = Path('static/articles')
+    return send_from_directory(path, name)
+    

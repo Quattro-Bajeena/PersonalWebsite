@@ -10,10 +10,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 art_folder = Path("app/static/Images/Art/")
 
-drawings_folder = art_folder.joinpath('drawings')
-stickers_folder = art_folder.joinpath('stickers')
-three_dee_folder = art_folder.joinpath('3D')
-animation_folder = art_folder.joinpath('animation')
+static_folder = Path("Images/Art/")
+drawings_folder = static_folder.joinpath('drawings')
+stickers_folder = static_folder.joinpath('stickers')
+three_dee_folder = static_folder.joinpath('3D')
+animation_folder = static_folder.joinpath('animation')
 
 categories = [
     {'page': 'drawings', 'category' : 'drawing', 'folder_path' : drawings_folder},

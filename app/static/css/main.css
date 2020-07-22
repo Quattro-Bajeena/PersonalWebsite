@@ -170,8 +170,11 @@ body {
     
 }
 
+.activity > a{
+    color: inherit;
+}
 
-.activity > .title{
+.activity > a > .title{
     grid-area: title;
     font-weight: bold;
 }

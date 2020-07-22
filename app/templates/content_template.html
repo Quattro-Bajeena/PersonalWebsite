@@ -2,11 +2,18 @@
 
 {%block head%}
 <link rel="stylesheet" href="{{url_for('static', filename='css/content_template.css')}}">
-
+<link rel="stylesheet" href="{{url_for('static', filename='css/article_styling.css')}}">
 {%endblock%}
 
 {% block body %}
 <div class="content-header">{% block header %} {%endblock%}</div>
 <div class="content-history">{%block history%}{%endblock%}</div>
 <div class="content-list">{% block list %}{%endblock%}</div>
+
+
+{% endblock %}
+
+{% block scripts%}
+<script type="text/javascript" src="{{url_for('static', filename='js/images.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/include_html.js')}}"></script>
 {% endblock %}
