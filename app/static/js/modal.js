@@ -6,8 +6,12 @@ let content_list = document.querySelector('.content-list');
 
 
 for(size_div of content_list.children){
+    
     let link = size_div.children[0];
-    link.addEventListener('click', showModal);
+    if(link.children[0].classList.contains('my-art')){
+        link.addEventListener('click', showModal);
+    }
+    
 }
 
 let captionText = document.querySelector(".modal-caption");
