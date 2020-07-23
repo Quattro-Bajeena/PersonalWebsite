@@ -14,13 +14,19 @@ let captionText = document.querySelector(".modal-caption");
 let modalImg = document.querySelector('.modal-content')
 
 let span = document.querySelector(".modal-close");
-span.addEventListener('click', closeModal)
 
-document.addEventListener('keydown', (event) =>{
-    if(event.key == 'Escape'){closeModal();}
+
+modalImg.addEventListener('webkitAnimationEnd', () => {
+
+    //Close modal only after animation ended
+    span.addEventListener('click', closeModal)
+    document.addEventListener('keydown', pressEsc)
 })
 
 
+function pressEsc(event){
+    if(event.key == 'Escape'){closeModal();}
+}
 
 function showModal(event){
     event.preventDefault();
@@ -32,4 +38,6 @@ function showModal(event){
 
 function closeModal(){
     modal.style.display = 'none';
+    span.removeEventListener('click', closeModal)
+    document.removeEventListener('keydown', pressEsc);
 }
