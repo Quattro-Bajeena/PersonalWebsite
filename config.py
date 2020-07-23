@@ -12,6 +12,9 @@ class Config(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    STATIC_ROOT = basedir / Path('static')
+    STATIC_URL = '/static/'
+    
     # ofc they're inside static folder, but they will be got by a url_for('static', path...) function
     ARTICLES_FOLDER = Path('articles')
     IMAGES_FOLDER = Path('Images')
