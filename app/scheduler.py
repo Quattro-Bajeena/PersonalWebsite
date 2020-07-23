@@ -21,12 +21,12 @@ def update_all() -> dict:
     print('update started')
     try:
         update_github_rss('Quattro-Bajeena', Activity, db)
-        # update_mal_rss('Paraon', Activity, db)
-        # update_tweets_rss(30, Activity, db)
-        # update_yt_rss(feed_url, Activity, db)
-        # update_videos_db(Video, db)
-        # add_files(art_folder, categories, Art, db)
-        # remove_files(art_folder, Art, db)
+        update_mal_rss('Paraon', Activity, db)
+        update_tweets_rss(30, Activity, db)
+        update_yt_rss(feed_url, Activity, db)
+        update_videos_db(Video, db)
+        add_files(art_folder, categories, Art, db)
+        remove_files(art_folder, Art, db)
         print('update finished')
         return {'completed': True, 'message' : 'updated activities'}
     except:

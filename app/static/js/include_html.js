@@ -14,7 +14,14 @@ for(el of elements){
     file_name = el.id + '.html';
 
     getFile(articles_url+file_name, (event)=>{
-        el.innerHTML = event.target.response;
+        
+        if(event.target.status == 200){
+            el.innerHTML = event.target.response;
+        }
+        else{
+            el.innerHTML = 'Ooopsy I dhink we couldn"t find the ardizle';
+        }
+        
     })
     
 }

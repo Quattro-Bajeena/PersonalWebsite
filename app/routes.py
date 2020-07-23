@@ -4,13 +4,13 @@ from .scheduler import update_all_thread
 from flask import render_template, url_for, redirect, request, send_from_directory
 from pathlib import Path
 import os
+
+
 @app.context_processor
 def feed_activities():
     activities = Activity.query.order_by(Activity.date.desc())
-    icon_path = Path().parent.joinpath('Images/Icons/')
+    icon_path = app.config['ICONS_FOLDER']
     return dict(activities = activities, icon_path = icon_path.as_posix())
-
-
 
 
 @app.route('/')
@@ -29,7 +29,7 @@ def update_activities():
 def nick_page(nick : str):
     nickname = Nickname.query.get_or_404(nick)
     accounts = nickname.accounts.all()
-    path = Path().parent.joinpath('Images/Icons/')
+    path = app.config['ICONS_FOLDER']
     return render_template('nick.html', nickname = nickname, accounts = accounts, path = path.as_posix())
 
 # Work Pages
@@ -42,14 +42,16 @@ def art_page():
 def art_category_page(category : str):
     from .db_updates import categories
 
-    art_category = next(item for item in categories if item["page"] == category)['category']
-    path = next(item for item in categories if item["page"] == category)['folder_path']
-
-    art_pieces = Art.query.filter(Art.category==art_category).order_by(Art.name)
+    try:
+        art_category = next(item for item in categories if item["page"] == category)['category']
+        path = next(item for item in categories if item["page"] == category)['folder_path']
+        art_pieces = Art.query.filter(Art.category==art_category).order_by(Art.name)
+        return render_template(f'Work/Work_piece/Art/{category}.html', path = path.as_posix(), category = category, art_pieces = art_pieces)
+    except:
+        return redirect(url_for('art_page'))
     # path = Path().parent.joinpath(f'Images/Art/{category}')
-    print(path)
-    return render_template(f'Work/Work_piece/Art/{category}.html', path = path.as_posix(), category = category, art_pieces = art_pieces)
-
+    
+    
 #
 @app.route('/Programming')
 def programming_page():
@@ -85,10 +87,10 @@ def image_display(name : str):
     category = image.category
     from .db_updates import categories
     path = next(item for item in categories if item["category"] == category)['folder_path']
-    return send_from_directory(Path('static').joinpath(path), image.src)
+    return send_from_directory(Path('static') / path, image.src)
 
 @app.route('/text_files/<name>')
 def articles_raw(name : str):
-    path = Path('static/articles')
+    path = Path('static') / app.config['ARTICLES_FOLDER']
     return send_from_directory(path, name)
     

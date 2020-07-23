@@ -19,13 +19,17 @@ My Cool Street Art
 
 {%block history%}
 
-*Why I doooo stickers and yeah yo*
+<div class="include-html" id="Stickers"></div>
 
 {%endblock%}
 
 {% block list %}
 {% for art in art_pieces %}
-    <div class={{art.size}}><img  src={{url_for('static', filename=path+'/'+art.src)}} title={{art.name}} alt={{art.name}} ></div>
+<div class={{art.size}}>
+    <a href="{{url_for('image_display', name=art.name)}}" target="blank">
+        <img class="my-art" src={{url_for('static', filename=path+'/'+art.src)}} title='{{art.name}}' alt='{{art.name}}' >
+    </a>
+</div>
 {% endfor %}
 {%endblock%}
 

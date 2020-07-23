@@ -2,19 +2,23 @@ from pathlib import Path
 from PIL import Image
 
 #how to import app??
-from app import db
+
+from app import app, db
 from app.models import Art
 from config import basedir
 
 from flask_sqlalchemy import SQLAlchemy
 
-art_folder = Path("app/static/Images/Art/")
 
-static_folder = Path("Images/Art/")
-drawings_folder = static_folder.joinpath('drawings')
-stickers_folder = static_folder.joinpath('stickers')
-three_dee_folder = static_folder.joinpath('3D')
-animation_folder = static_folder.joinpath('animation')
+art_folder =Path('app/static') / app.config['ART_FOLDER']
+
+art_folder_rel = app.config['ART_FOLDER']
+
+drawings_folder = art_folder_rel / 'drawings'
+stickers_folder = art_folder_rel / 'stickers'
+three_dee_folder = art_folder_rel / '3D'
+animation_folder = art_folder_rel / 'animation'
+
 
 categories = [
     {'page': 'drawings', 'category' : 'drawing', 'folder_path' : drawings_folder},
@@ -27,7 +31,9 @@ categories = [
 def add_files(art_folder : Path, folders : list, Art, db : SQLAlchemy):
     any_added = False
     for folder in folders:
+        
         art_pieces = folder['folder_path'].glob('*')
+        
         for art_piece in art_pieces:
             name = art_piece.stem
 

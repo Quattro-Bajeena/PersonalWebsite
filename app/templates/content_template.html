@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {%block head%}
+{{ super() }}
 <link rel="stylesheet" href="{{url_for('static', filename='css/content_template.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/article_styling.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/modal.css')}}">
 {%endblock%}
 
 {% block body %}
@@ -11,9 +13,15 @@
 <div class="content-list">{% block list %}{%endblock%}</div>
 
 
+<div class="modal-image">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content">
+    <div class="modal-caption"></div>
+</div>
+
 {% endblock %}
 
 {% block scripts%}
-<script type="text/javascript" src="{{url_for('static', filename='js/images.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/modal.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/include_html.js')}}"></script>
 {% endblock %}

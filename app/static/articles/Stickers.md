@@ -1,0 +1,5 @@
+# Becuase my sister liked SpiderVerse
+yeah, she wanted to do street art or sth, like stickers
+I thought it was a sick idea, so I started doing this with her, under the pseudonym tAki (full: tAki_wlkp, becasue taki was already taken on twitter and instagram lol)
+
+Yeah, we're doing it around our neighbourhood, and it's a really cool feeling, knowing that hundreds of people may glanced at those creations of mine. and seeing them in person all the time, when I'm going shopping or stuff. That's the biggest audience I have, I think.

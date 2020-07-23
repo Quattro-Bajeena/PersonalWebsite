@@ -12,4 +12,12 @@ class Config(object):
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # ofc they're inside static folder, but they will be got by a url_for('static', path...) function
+    ARTICLES_FOLDER = Path('articles')
+    IMAGES_FOLDER = Path('Images')
+    ART_FOLDER = IMAGES_FOLDER / 'Art'
+    ICONS_FOLDER = IMAGES_FOLDER / 'Icons'
+    PROFILE_PICS_FOLDER = IMAGES_FOLDER / 'Profile_Pics'
+    WEBSITE_LOGOS_FOLDER = IMAGES_FOLDER / 'Website_Logos'
+
 
