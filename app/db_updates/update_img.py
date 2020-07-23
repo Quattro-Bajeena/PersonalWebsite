@@ -14,10 +14,10 @@ art_folder =Path('app/static') / app.config['ART_FOLDER']
 
 art_folder_rel = app.config['ART_FOLDER']
 
-drawings_folder = art_folder_rel / 'drawings'
-stickers_folder = art_folder_rel / 'stickers'
+drawings_folder = art_folder_rel / 'Drawings'
+stickers_folder = art_folder_rel / 'Stickers'
 three_dee_folder = art_folder_rel / '3D'
-animation_folder = art_folder_rel / 'animation'
+animation_folder = art_folder_rel / 'Animation'
 
 
 categories = [
