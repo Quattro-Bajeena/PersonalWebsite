@@ -24,7 +24,7 @@
             <button id='update-activities-btn' >Update</button>
         </div>
         <div class="activities">
-            {% for activity in activities[:20] %}
+            {% for activity in activities[:40] %}
             <div class="activity">
                 <a href={{activity.link}} target="remote">
                     <div class="title">{{activity.title}}</div>
@@ -55,7 +55,7 @@
 </div>
 
 
-<script type="text/javascript" src="{{url_for('static', filename='js/update_db.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/activities.js')}}"></script>
 
 <script type=text/javascript>
     $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
