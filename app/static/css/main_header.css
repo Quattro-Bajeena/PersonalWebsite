@@ -1,0 +1,18 @@
+.main-container >.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 1.5em;
+    text-align: center;
+    padding: 20px;
+    grid-area: h;
+    background-color: #f1b500;
+    	
+    
+    
+}
+
+#header-title{
+    
+}
