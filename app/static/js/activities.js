@@ -1,16 +1,40 @@
 activities = function(){
 
 // UPDATING DB
+let btn = document.querySelector('#update-activities-btn');
+let intervalID;
+
 function db_update(event){
+	btn.disabled = true;
 	fetch('/update-activities')
 	  .then(response => response.json())
 	  .then(data => {
-		console.log(data);
-		let btn = document.querySelector('#update-activities-btn');
-		
-		btn.textContent = 'Updated'
+
+		check_update_status(data['status_url']);
 	  })
 }
+
+function check_update_status(status_url, finished_function){
+	
+	
+	intervalID = setInterval( () => {
+		fetch(status_url)
+		.then(response => response.json())
+	  	.then(data => {
+			
+			if(data['finished'] == true){
+				clearInterval(intervalID)
+				location.reload();
+				btn.disabled = false;
+			}
+			console.log(data);
+	  })
+	}
+	,1000);
+		
+}
+
+
 
 let update_btn = document.querySelector('#update-activities-btn');
 update_btn.addEventListener('click', db_update);

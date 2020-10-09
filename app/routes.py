@@ -1,7 +1,7 @@
 from . import app, db
 from .models import Nickname, Account, Art, Activity, Video
-from .scheduler import update_all_thread
-from flask import render_template, url_for, redirect, request, send_from_directory
+from .celery_tasks import update_activities_async
+from flask import render_template, url_for, redirect, request, send_from_directory, jsonify, make_response
 from pathlib import Path
 import os
 
@@ -20,11 +20,44 @@ def index():
 
 @app.route('/update-activities')
 def update_activities():
-    result = update_all_thread()
-    return result
+    print('start update activities')
+    task = update_activities_async.apply_async()
+    
+    return {"status_url" : url_for('task_status', task_id=task.id)}, 201
+    
 
-
-
+@app.route('/status/<task_id>')
+def task_status(task_id):
+    task = update_activities_async.AsyncResult(task_id)
+    print(task.state)
+    
+    if task.state == "PENDING":
+        response={
+            'finished': False,
+            'state' : task.state,
+            'current':0,
+            'total': 1,
+            'status': "pending"
+        }
+    elif not task.ready():
+        response={
+            'finished': False,
+            'state' : task.state,
+            'current':task.info.get('current', 0),
+            'total': task.info.get('total', 0),
+            'status': task.info.get('status', '')
+        }
+    else:
+        response={
+            'finished': True,
+            'state' : task.state,
+            'current': 1,
+            'total':  1,
+            'status': 'Update Completed'
+        }
+    
+    return response
+    
 @app.route('/nicknames/<nick>')
 def nick_page(nick : str):
     nickname = Nickname.query.get_or_404(nick)

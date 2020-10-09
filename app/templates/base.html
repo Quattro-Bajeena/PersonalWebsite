@@ -4,25 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-    
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main_feed.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main_header.css')}}">
     {% block head%} {%endblock%}
     
     <title>{%block title%}{%endblock%}</title>
 </head>
 
 <body><div class="main-container">
-    <div class="header">Header</div>
+    <div class="header">
+        <div id="header-title">YO, WELCOME TO MY AWESOME SITE</div>
+        
+        
+
+    </div>
     <div class="content-container">
         {%block body%}{%endblock%} 
     </div>
 
     <div class="rssfeed">
-        <div class="header">My Activities</div>
-        <div class="update">
-            <button id='update-activities-btn' >Update</button>
+        <div class="header">
+            My Activities
+            <div class="update-btn">
+                <button id='update-activities-btn' >Update</button>
+            </div>
         </div>
+        
         <div class="activities">
             {% for activity in activities[:40] %}
             <div class="activity">
@@ -51,7 +61,12 @@
 
     </div>
 
-    <div class="footer">Footer</div>
+    <div class="footer">
+        
+        <a href="#">My Youtube Downloader</a>
+        <a href="#">Contact Info</a>
+        
+    </div>
 </div>
 
 
