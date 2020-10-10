@@ -13,14 +13,13 @@ def update_mal_rss(user : str, Activity, db : SQLAlchemy):
     history = jikan.user(username=user, request = 'history')
 
 
-    entry = history['history'][0]
+    
 
     for entry in history['history']:
         name = entry['meta']['name']
         number = entry['increment']
-
+        
         id = f'mal_{name}_ep_{number}'
-
         if not Activity.query.get(id):
             if entry['meta']['type'] == 'anime':
                 action = 'Watched'

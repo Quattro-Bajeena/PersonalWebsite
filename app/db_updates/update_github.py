@@ -28,6 +28,7 @@ def update_github_rss(username : str, Activity, db : SQLAlchemy):
         feed = feedparser.parse(repo_url)
 
         for commit in feed.entries:
+            print(f'{repo_name} - {commit.title}')
             if not Activity.query.get(commit.id):
                 id = commit.id
                 title = f'{repo_name} - {commit.title}'

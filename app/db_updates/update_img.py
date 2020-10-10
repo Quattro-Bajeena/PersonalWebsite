@@ -43,7 +43,7 @@ def add_files(art_folder : Path, categories : list, Art, db : SQLAlchemy):
         
         for art_piece in art_pieces:
             name = art_piece.stem
-            print(name)
+            
             if not Art.query.get(name):
                 full_name = art_piece.name
                 
