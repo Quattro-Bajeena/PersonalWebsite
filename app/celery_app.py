@@ -5,7 +5,7 @@ from celery import Celery
 
 
 load_dotenv('.env')
-broker = os.environ.get('REDIS_URL') or 'redis://127.0.0.1:6379'
+broker = os.environ.get('REDIS_URL') or os.environ.get('REDIS_URL_LOCAL')
 
 celery_app = Celery( broker=broker, backend=broker)
 celery_app.conf.imports = ['app.celery_tasks']

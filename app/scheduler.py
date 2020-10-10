@@ -12,11 +12,11 @@ from .models import Activity, Art, Video
 from .db_updates import *
 
 update_functions = {
-    #update_github_rss : ('Quattro-Bajeena', Activity, db),
-    #update_mal_rss : ('Paraon', Activity, db),
-    #update_tweets_rss : (30, Activity, db),
-    #update_yt_rss : (feed_url, Activity, db),
-    #update_videos_db : (Video, db),
+    update_github_rss : ('Quattro-Bajeena', Activity, db),
+    update_mal_rss : ('Paraon', Activity, db),
+    update_tweets_rss : (30, Activity, db),
+    update_yt_rss : (feed_url, Activity, db),
+    update_videos_db : (Video, db),
     add_files : (art_folder, categories, Art, db),
     remove_files : (art_folder, Art, db)
 }
